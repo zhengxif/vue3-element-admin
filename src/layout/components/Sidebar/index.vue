@@ -31,33 +31,33 @@ import { routes } from '@/router'
 import SidebarItem from './SidebarItem.vue'
 
 export default defineComponent({
-  name: 'Sidebar',
-  components: {
-    SidebarItem
-  },
-  setup() {
-    const route = useRoute() // 等价于 this.$route
-    // 根据路由路径 对应 当前激活的菜单
-    const activeMenu = computed(() => {
-      const { path } = route
-      return path
-    })
-    // scss变量
-    const scssVariables = computed(() => variables)
-    // 展开收起状态 稍后放store
-    const isCollapse = ref(false)
+    name: 'Sidebar',
+    components: {
+        SidebarItem
+    },
+    setup() {
+        const route = useRoute() // 等价于 this.$route
+        // 根据路由路径 对应 当前激活的菜单
+        const activeMenu = computed(() => {
+            const { path } = route
+            return path
+        })
+        // scss变量
+        const scssVariables = computed(() => variables)
+        // 展开收起状态 稍后放store
+        const isCollapse = ref(false)
 
-    // 渲染路由
-    const menuRoutes = computed(() => routes)
+        // 渲染路由
+        const menuRoutes = computed(() => routes)
 
-    return {
-      // 不有toRefs原因 缺点在这里 variables里面变量属性感觉来源不明确 不知道有哪些变量值
-      // ...toRefs(variables),
-      scssVariables,
-      isCollapse,
-      activeMenu,
-      menuRoutes
+        return {
+            // 不有toRefs原因 缺点在这里 variables里面变量属性感觉来源不明确 不知道有哪些变量值
+            // ...toRefs(variables),
+            scssVariables,
+            isCollapse,
+            activeMenu,
+            menuRoutes
+        }
     }
-  }
 })
 </script>

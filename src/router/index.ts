@@ -3,117 +3,117 @@ import Layout from '@/layout/index.vue'
 
 // 看作是异步获取路由
 export const asyncRoutes: Array<RouteRecordRaw> = [
-  {
-    path: '/documentation',
-    component: Layout, // 布局组件作为一级路由
-    redirect: '/documentation/index',
-    children: [
-      {
-        path: '/documentation/index',
-        name: 'Documentation',
-        component: () => import(/* webpackChunkName: "documentation" */ '@/views/documentation/index.vue'),
-        meta: {
-          title: 'Documentation',
-          icon: 'documentation',
-          hidden: true, // 主要是控制某些路由不用渲染成菜单，比如login 404 401等路由
-        }
-      }
-    ]
-  },
-  {
-    path: '/guide',
-    component: Layout,
-    redirect: '/guide/index',
-    children: [
-      {
-        path: 'index',
-        name: 'Guide',
-        component: () => import(/* webpackChunkName: "guide" */ '@/views/guide/index.vue'),
-        meta: {
-          title: 'Guide',
-          icon: 'guide'
-        }
-      }
-    ]
-  },
-  {
-    path: '/system',
-    component: Layout,
-    redirect: '/system/user',
-    meta: {
-      title: 'System',
-      icon: 'lock',
-      alwaysShow: true
+    {
+        path: '/documentation',
+        component: Layout, // 布局组件作为一级路由
+        redirect: '/documentation/index',
+        children: [
+            {
+                path: '/documentation/index',
+                name: 'Documentation',
+                component: () => import(/* webpackChunkName: "documentation" */ '@/views/documentation/index.vue'),
+                meta: {
+                    title: 'Documentation',
+                    icon: 'documentation',
+                    hidden: true, // 主要是控制某些路由不用渲染成菜单，比如login 404 401等路由
+                }
+            }
+        ]
     },
-    children: [
-      {
-        path: 'menu',
-        component: () => import(/* webpackChunkName: "menu" */ '@/views/system/menu.vue'),
+    {
+        path: '/guide',
+        component: Layout,
+        redirect: '/guide/index',
+        children: [
+            {
+                path: 'index',
+                name: 'Guide',
+                component: () => import(/* webpackChunkName: "guide" */ '@/views/guide/index.vue'),
+                meta: {
+                    title: 'Guide',
+                    icon: 'guide'
+                }
+            }
+        ]
+    },
+    {
+        path: '/system',
+        component: Layout,
+        redirect: '/system/user',
         meta: {
-          title: 'Menu Management',
-          hidden: true
-        }
-      },
-      {
-        path: 'role',
-        component: () => import(/* webpackChunkName: "role" */ '@/views/system/role.vue'),
-        meta: {
-          title: 'Role Management',
-          hidden: true
-        }
-      },
-      {
-        path: 'user',
-        component: () => import(/* webpackChunkName: "user" */ '@/views/system/user.vue'),
-        meta: {
-          title: 'User Management'
-        }
-      }
-    ]
-  },
-  { // 外链路由
-    path: '/external-link',
-    component: Layout,
-    children: [
-      {
-        path: 'https://www.baidu.com/',
-        redirect: '/',
-        meta: {
-          title: 'External Link',
-          icon: 'link'
-        }
-      }
-    ]
-  }
+            title: 'System',
+            icon: 'lock',
+            alwaysShow: true
+        },
+        children: [
+            {
+                path: 'menu',
+                component: () => import(/* webpackChunkName: "menu" */ '@/views/system/menu.vue'),
+                meta: {
+                    title: 'Menu Management',
+                    hidden: true
+                }
+            },
+            {
+                path: 'role',
+                component: () => import(/* webpackChunkName: "role" */ '@/views/system/role.vue'),
+                meta: {
+                    title: 'Role Management',
+                    hidden: true
+                }
+            },
+            {
+                path: 'user',
+                component: () => import(/* webpackChunkName: "user" */ '@/views/system/user.vue'),
+                meta: {
+                    title: 'User Management'
+                }
+            }
+        ]
+    },
+    { // 外链路由
+        path: '/external-link',
+        component: Layout,
+        children: [
+            {
+                path: 'https://www.baidu.com/',
+                redirect: '/',
+                meta: {
+                    title: 'External Link',
+                    icon: 'link'
+                }
+            }
+        ]
+    }
 ]
 
 export const constantRoutes: Array<RouteRecordRaw> = [
-  {
-    path: '/',
-    component: Layout,
-    redirect: '/dashboard',
-    children: [
-      {
-        path: 'dashboard',
-        name: 'Dashboard',
-        component: () => import(/* webpackChunkName: "dashboard" */ '@/views/dashboard/index.vue'),
-        meta: {
-          title: 'Dashboard',
-          icon: 'el-icon-platform-eleme'
-        }
-      }
-    ]
-  }
+    {
+        path: '/',
+        component: Layout,
+        redirect: '/dashboard',
+        children: [
+            {
+                path: 'dashboard',
+                name: 'Dashboard',
+                component: () => import(/* webpackChunkName: "dashboard" */ '@/views/dashboard/index.vue'),
+                meta: {
+                    title: 'Dashboard',
+                    icon: 'el-icon-platform-eleme'
+                }
+            }
+        ]
+    }
 ]
 
 export const routes = [
-  ...constantRoutes,
-  ...asyncRoutes
+    ...constantRoutes,
+    ...asyncRoutes
 ]
 
 const router = createRouter({
-  history: createWebHashHistory(),
-  routes
+    history: createWebHashHistory(),
+    routes
 })
 
 export default router

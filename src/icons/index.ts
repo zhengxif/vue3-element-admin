@@ -8,6 +8,6 @@ const requireAll = (requireContext: ReturnType<typeof require.context>) => requi
 requireAll(req)
 
 export default (app: App) => {
-  // 全局注册svg-icon组件
-  app.component('svg-icon', SvgIcon)
+    // 全局注册svg-icon组件
+    app.component('svg-icon', SvgIcon)
 }

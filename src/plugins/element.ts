@@ -1,17 +1,17 @@
 import { App } from 'vue'
 import {
-  locale,
-  ElButton,
-  ElMessage,
-  ElNotification,
-  ElMessageBox,
-  ElMenu,
-  ElMenuItem,
-  ElSubmenu,
-  ElRow,
-  ElCol,
-  ElBreadcrumb,
-  ElBreadcrumbItem
+    locale,
+    ElButton,
+    ElMessage,
+    ElNotification,
+    ElMessageBox,
+    ElMenu,
+    ElMenuItem,
+    ElSubmenu,
+    ElRow,
+    ElCol,
+    ElBreadcrumb,
+    ElBreadcrumbItem
 } from 'element-plus'
 import 'element-plus/lib/theme-chalk/index.css'
 // Element Plus 组件内部默认使用英语
@@ -24,36 +24,36 @@ import 'dayjs/locale/zh-cn'
 export type Size = 'default' | 'medium' | 'small' | 'mini'
 
 export default (app: App): void => {
-  locale(lang)
+    locale(lang)
 
-  // 按需导入组件列表
-  const components = [
-    ElButton,
-    ElMessage,
-    ElNotification,
-    ElMessageBox,
-    ElMenu,
-    ElMenuItem,
-    ElSubmenu,
-    ElRow,
-    ElCol,
-    ElBreadcrumb,
-    ElBreadcrumbItem
-  ]
+    // 按需导入组件列表
+    const components = [
+        ElButton,
+        ElMessage,
+        ElNotification,
+        ElMessageBox,
+        ElMenu,
+        ElMenuItem,
+        ElSubmenu,
+        ElRow,
+        ElCol,
+        ElBreadcrumb,
+        ElBreadcrumbItem,
+    ]
 
-  components.forEach(component => {
-    app.component(component.name, component)
-  })
+    components.forEach(component => {
+        app.component(component.name, component)
+    })
 
-  app.config.globalProperties.$message = ElMessage
-  app.config.globalProperties.$notify = ElNotification
-  app.config.globalProperties.$confirm = ElMessageBox.confirm
-  app.config.globalProperties.$alert = ElMessageBox.alert
-  app.config.globalProperties.$prompt = ElMessageBox.prompt
+    app.config.globalProperties.$message = ElMessage
+    app.config.globalProperties.$notify = ElNotification
+    app.config.globalProperties.$confirm = ElMessageBox.confirm
+    app.config.globalProperties.$alert = ElMessageBox.alert
+    app.config.globalProperties.$prompt = ElMessageBox.prompt
 
-  // 全局配置 文档说明 https://element-plus.gitee.io/#/zh-CN/component/quickstart#quan-ju-pei-zhi
-  // 该对象目前支持 size 与 zIndex 字段。size 用于改变组件的默认尺寸 small，zIndex 设置弹框的初始 z-index（默认值：2000）。
-  app.config.globalProperties.$ELEMENT = {
-    size: 'medium'
-  }
+    // 全局配置 文档说明 https://element-plus.gitee.io/#/zh-CN/component/quickstart#quan-ju-pei-zhi
+    // 该对象目前支持 size 与 zIndex 字段。size 用于改变组件的默认尺寸 small，zIndex 设置弹框的初始 z-index（默认值：2000）。
+    app.config.globalProperties.$ELEMENT = {
+        size: 'medium'
+    }
 }
