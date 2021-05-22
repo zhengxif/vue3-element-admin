@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Role page</h1>
+        <h1>User page</h1>
     </div>
 </template>
 
@@ -8,6 +8,6 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'Role',
+  name: 'User',
 })
 </script>
