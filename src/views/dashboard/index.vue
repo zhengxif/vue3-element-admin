@@ -22,7 +22,7 @@ export default defineComponent({
     // https://blog.csdn.net/qq_39115469/article/details/113817592
         const { proxy } = getCurrentInstance()!
         const sayHi = () => {
-      proxy?.$message.success('恭喜你，这是一条成功消息')
+          proxy?.$message.success('恭喜你，这是一条成功消息')
         }
         return {
             sayHi,
