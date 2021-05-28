@@ -15,7 +15,8 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
                 meta: {
                     title: 'Documentation',
                     icon: 'documentation',
-                    hidden: true, // 主要是控制某些路由不用渲染成菜单，比如login 404 401等路由
+                    hidden: false, // 主要是控制某些路由不用渲染成菜单，比如login 404 401等路由
+                    noCache: false, // 默认情况下没有 noCache属性 或为false 都会进行缓存 true不缓存
                 }
             }
         ]
@@ -48,6 +49,7 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
         children: [
             {
                 path: 'menu',
+                name: 'Menu Management',
                 component: () => import(/* webpackChunkName: "menu" */ '@/views/system/menu.vue'),
                 meta: {
                     title: 'Menu Management',
@@ -56,6 +58,7 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
             },
             {
                 path: 'role',
+                name: 'Menu Management',
                 component: () => import(/* webpackChunkName: "role" */ '@/views/system/role.vue'),
                 meta: {
                     title: 'Role Management',
@@ -64,6 +67,7 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
             },
             {
                 path: 'user',
+                name: 'User Management',
                 component: () => import(/* webpackChunkName: "user" */ '@/views/system/user.vue'),
                 meta: {
                     title: 'User Management'
@@ -99,11 +103,26 @@ export const constantRoutes: Array<RouteRecordRaw> = [
                 component: () => import(/* webpackChunkName: "dashboard" */ '@/views/dashboard/index.vue'),
                 meta: {
                     title: 'Dashboard',
-                    icon: 'el-icon-platform-eleme'
+                    icon: 'el-icon-platform-eleme',
+                    affix: true, // 固定显示在tagView中
                 }
             }
         ]
-    }
+    },
+    {
+        path: '/redirect',
+        component: Layout,
+        meta: {
+            hidden: true
+        },
+        children: [
+            { // 带参数的动态路由正则匹配 文档说明
+            // https://next.router.vuejs.org/zh/guide/essentials/route-matching-syntax.html#%E5%8F%AF%E9%87%8D%E5%A4%8D%E7%9A%84%E5%8F%82%E6%95%B0
+                path: '/redirect/:path(.*)', // 要匹配多级路由 应该加*号
+                component: () => import('@/views/redirect/index.vue')
+            }
+        ]
+    },
 ]
 
 export const routes = [
