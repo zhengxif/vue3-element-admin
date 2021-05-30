@@ -1,22 +1,28 @@
 <template>
-  <div>
-    <el-menu
-      class="sidebar-container-menu"
-      mode="vertical"
-      :default-active="activeMenu"
-      :background-color="scssVariables.menuBg"
-      :text-color="scssVariables.menuText"
-      :active-text-color="themeColor"
-      :collapse="isCollapse"
-      :collapse-transition="true"
-    >
-      <sidebar-item
-        v-for="route in menuRoutes"
-        :key="route.path"
-        :item="route"
-        :base-path="route.path"
-      />
-    </el-menu>
+  <div class="sidebar-wrapper">
+    <logo v-if="showLogo" :collapse="isCollapse" />
+    <scroll-panel>
+      <el-menu
+        class="sidebar-container-menu"
+        :class="{
+          'sidebar-show-logo': showLogo
+        }"
+        mode="vertical"
+        :default-active="activeMenu"
+        :background-color="scssVariables.menuBg"
+        :text-color="scssVariables.menuText"
+        :active-text-color="themeColor"
+        :collapse="isCollapse"
+        :collapse-transition="true"
+      >
+        <sidebar-item
+          v-for="route in menuRoutes"
+          :key="route.path"
+          :item="route"
+          :base-path="route.path"
+        />
+      </el-menu>
+    </scroll-panel>
   </div>
 </template>
 
@@ -27,11 +33,15 @@ import variables from '@/styles/variables.scss'
 import { routes } from '@/router'
 import SidebarItem from './SidebarItem.vue'
 import { useStore } from '@/store'
+import Logo from './Logo.vue'
+import ScrollPanel from '@/components/ScrollPanel.vue'
 
 export default defineComponent({
     name: 'Sidebar',
     components: {
-        SidebarItem
+        Logo,
+        SidebarItem,
+        ScrollPanel
     },
     setup() {
         const route = useRoute()
@@ -56,14 +66,29 @@ export default defineComponent({
         // 获取主题色
         const themeColor = computed(() => store.getters.themeColor)
 
+        // 是否显示logo
+        const showLogo = computed(() => store.state.settings.sidebarLogo)
+
         return {
             // ...toRefs(variables), // 不有toRefs原因 缺点variables里面变量属性来源不明确
             scssVariables,
             isCollapse,
             activeMenu,
             menuRoutes,
-            themeColor
+            themeColor,
+            showLogo
         }
     }
 })
 </script>
+
+<style lang="scss" scoped>
+  .sidebar-wrapper {
+    .sidebar-container-menu {
+      height: 100vh;
+      &.sidebar-show-logo {
+        height: calc(100vh - 50px);
+      }
+    }
+  }
+</style>

@@ -10,7 +10,7 @@
       <el-switch v-model="tagsView" class="drawer-switch" />
     </div>
 
-    <!-- 侧边栏loggo  -->
+    <!-- 侧边栏logo  -->
     <div class="drawer-item">
       <span>Sidebar Logo</span>
       <el-switch v-model="showSidebarLogo" class="drawer-switch" />
