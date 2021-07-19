@@ -1,13 +1,12 @@
 <template>
-    <div>
-        <h1>Guide page</h1>
-    </div>
+  <div>
+    <h1>Guide page {{ $route.name }}</h1>
+    <el-button type="primary">primary</el-button>
+  </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-
-export default defineComponent({
-    name: 'Guide',
-})
+<script>
+export default {
+    name: 'Guide'
+}
 </script>

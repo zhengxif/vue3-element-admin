@@ -281,7 +281,8 @@ export default defineComponent({
   .el-icon-close {
     width: 16px;
     height: 16px;
-    vertical-align: 2px;
+    position: relative;
+    left: 2px;
     border-radius: 50%;
     text-align: center;
     transition: all .3s cubic-bezier(.645, .045, .355, 1);
@@ -289,7 +290,7 @@ export default defineComponent({
     &:before {
       transform: scale(.6);
       display: inline-block;
-      vertical-align: -3px;
+      vertical-align: -1px;
     }
     &:hover {
       background-color: #b4bccc;

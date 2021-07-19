@@ -4,20 +4,20 @@ import { IRootState } from '@/store'
 
 // 携带fullPath
 export interface RouteLocationWithFullPath extends RouteRecordNormalized {
-    fullPath?: string;
+  fullPath?: string;
 }
 export interface ITagsViewState {
-    // 存放当前显示的tags view集合
-    visitedViews: RouteLocationWithFullPath[];
-    // 根据路由name缓存集合
-    cachedViews: RouteRecordName[];
+  // 存放当前显示的tags view集合
+  visitedViews: RouteLocationWithFullPath[];
+  // 根据路由name缓存集合
+  cachedViews: RouteRecordName[];
 }
 
 // 定义mutations
 const mutations: MutationTree<ITagsViewState> = {
     // 添加可显示tags view
     ADD_VISITED_VIEW(state, view) {
-        // 过滤去重
+    // 过滤去重
         if (state.visitedViews.some(v => v.path === view.path)) return
         // 没有titles时处理
         state.visitedViews.push(Object.assign({}, view, {
@@ -27,7 +27,7 @@ const mutations: MutationTree<ITagsViewState> = {
     // 如果路由meta.noCache没有 默认或为false代表进行缓存，为true不缓存
     // 默认缓存所有路由
     ADD_CACHED_VIEW(state, view) {
-        // 只有路由有name才可缓存集合keep-alive inludes使用
+    // 只有路由有name才可缓存集合keep-alive inludes使用
         if (state.cachedViews.includes(view.name)) return
         if (!view.meta.noCache) {
             state.cachedViews.push(view.name)
@@ -46,7 +46,7 @@ const mutations: MutationTree<ITagsViewState> = {
     },
     // 清空可显示列表
     DEL_ALL_VISITED_VIEWS(state) {
-        // 对于affix为true的路由 tag view 是不能删除的
+    // 对于affix为true的路由 tag view 是不能删除的
         const affixTags = state.visitedViews.filter(tag => tag.meta.affix)
         state.visitedViews = affixTags
     },
@@ -68,7 +68,7 @@ const mutations: MutationTree<ITagsViewState> = {
 const actions: ActionTree<ITagsViewState, IRootState> = {
     // 添加tags view
     addView({ dispatch }, view: RouteRecordRaw) {
-        // 添加tag时也要判断该tag是否需要缓存
+    // 添加tag时也要判断该tag是否需要缓存
         dispatch('addVisitedView', view)
         dispatch('addCachedView', view)
     },
@@ -124,11 +124,9 @@ const actions: ActionTree<ITagsViewState, IRootState> = {
         dispatch('delOthersVisitedViews', view)
         dispatch('delOthersCachedViews', view)
     },
-    // 关闭其他可显示tag
     delOthersVisitedViews({ commit }, view: RouteRecordRaw) {
         commit('DEL_OTHERS_VISITED_VIEWS', view)
     },
-    // 关闭其他缓存tag
     delOthersCachedViews({ commit }, view: RouteRecordRaw) {
         commit('DEL_OTHERS_CACHED_VIEWS', view)
     }

@@ -28,9 +28,8 @@
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
-import { useRoute } from 'vue-router'
+import { RouteRecordRaw, useRoute } from 'vue-router'
 import variables from '@/styles/variables.scss'
-import { routes } from '@/router'
 import SidebarItem from './SidebarItem.vue'
 import { useStore } from '@/store'
 import Logo from './Logo.vue'
@@ -60,8 +59,11 @@ export default defineComponent({
         // 展开收起状态 稍后放store 当前是展开就让它收起
         const isCollapse = computed(() => !store.getters.sidebar.opened)
 
+        // 获取权限菜单
+        const menuList = computed(() => store.state.menu.authMenuTreeData)
+
         // 渲染路由
-        const menuRoutes = computed(() => routes)
+        const menuRoutes = computed(() => [...menuList.value] as unknown[] as RouteRecordRaw[])
 
         // 获取主题色
         const themeColor = computed(() => store.getters.themeColor)
@@ -70,7 +72,7 @@ export default defineComponent({
         const showLogo = computed(() => store.state.settings.sidebarLogo)
 
         return {
-            // ...toRefs(variables), // 不有toRefs原因 缺点variables里面变量属性来源不明确
+            // ...toRefs(variables), // 不用toRefs原因 缺点variables里面变量属性来源不明确
             scssVariables,
             isCollapse,
             activeMenu,
@@ -86,7 +88,8 @@ export default defineComponent({
   .sidebar-wrapper {
     .sidebar-container-menu {
       height: 100vh;
-      &.sidebar-show-logo {
+      &.sidebar-show-logo { // 显示logo时
+        // 100vh-50px
         height: calc(100vh - 50px);
       }
     }

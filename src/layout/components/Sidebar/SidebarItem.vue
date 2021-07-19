@@ -42,7 +42,7 @@
           class="menu-icon"
           :icon-class="item.meta.icon"
         ></svg-icon>
-        <span v-if="item.meta" class="submenu-title">{{ item.meta.title }}</span>
+        <span v-if="item.meta" class="submenu-title">{{ item.meta.title || item.name }}</span>
       </template>
       <template v-if="item.children">
         <sidebar-item
@@ -63,7 +63,7 @@ import path from 'path'
 import { defineComponent, PropType, computed, toRefs } from 'vue'
 import SidebarItemLink from './SidebarItemLink.vue'
 import { isExternal } from '@/utils/validate'
-import { MenuItemRouter } from '@/router/type'
+import { RouteRecordRaw } from 'vue-router'
 
 export default defineComponent({
     name: 'SidebarItem',
@@ -72,7 +72,7 @@ export default defineComponent({
     },
     props: {
         item: {
-            type: Object as PropType<MenuItemRouter>,
+            type: Object as PropType<RouteRecordRaw>,
             required: true
         },
         basePath: {

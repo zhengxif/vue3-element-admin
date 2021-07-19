@@ -20,6 +20,18 @@ import {
     ElDrawer,
     ElColorPicker,
     ElSwitch,
+    ElForm,
+    ElFormItem,
+    ElInput,
+    ElCard,
+    ElTree,
+    ElTable,
+    ElTableColumn,
+    ElPagination,
+    ElDialog,
+    ElSelect,
+    ElOption,
+    ElUpload
 } from 'element-plus'
 // 默认主题
 // import 'element-plus/lib/theme-chalk/index.css'
@@ -61,6 +73,18 @@ export default (app: App, options: ElementOptions): void => {
         ElDrawer,
         ElColorPicker,
         ElSwitch,
+        ElForm,
+        ElFormItem,
+        ElInput,
+        ElCard,
+        ElTree,
+        ElTable,
+        ElTableColumn,
+        ElPagination,
+        ElDialog,
+        ElSelect,
+        ElOption,
+        ElUpload
     ]
 
     components.forEach(component => {

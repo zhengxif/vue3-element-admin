@@ -11,7 +11,7 @@ import { useGenerateTheme } from '@/hooks/useGenerateTheme'
 export default defineComponent({
     name: 'App',
     setup() {
-    // 根据此时store中主题色生成
+    // 生成主题色
         useGenerateTheme()
     }
 })

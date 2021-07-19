@@ -1,13 +1,12 @@
 <template>
-    <div>
-        <h1>Documentation page</h1>
-    </div>
+  <div>
+    <h1>Documentation page</h1>
+    缓存测试 <input type="text">
+  </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-
-export default defineComponent({
-    name: 'Documentation',
-})
+<script>
+export default {
+    name: 'Documentation'
+}
 </script>

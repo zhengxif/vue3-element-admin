@@ -4,13 +4,21 @@ import createPersistedState from 'vuex-persistedstate'
 import app, { IAppState } from '@/store/modules/app'
 import tagsView, { ITagsViewState } from '@/store/modules/tagsView'
 import settings, { ISettingsState } from '@/store/modules/settings'
+import user, { IUserState } from '@/store/modules/user'
 import getters from './getters'
+import menu, { IMenusState } from './modules/menu'
+import role, { IRoleState } from './modules/role'
+import permission, { IPermissionState } from './modules/permission'
 
 // 模块声明在根状态下
 export interface IRootState {
   app: IAppState;
+  user: IUserState;
+  menu: IMenusState;
+  role: IRoleState;
   tagsView: ITagsViewState;
   settings: ISettingsState;
+  permission: IPermissionState;
 }
 
 // 通过下面方式使用 TypeScript 定义 store 能正确地为 store 提供类型声明。
@@ -38,7 +46,7 @@ const persisteSettingsState = createPersistedState({
     key: 'vuex_setting', // 存储名 默认都是vuex 多个模块需要指定 否则会覆盖
     // paths: ['app'] // 针对app这个模块持久化
     // 只针对app模块下sidebar.opened状态持久化
-    paths: ['settings.theme', 'settings.originalStyle', 'settings.tagViews', 'settings.sidebarLogo'] // 通过点连接符指定state路径
+    paths: ['settings.theme', 'settings.originalStyle', 'settings.tagsView', 'settings.sidebarLogo'] // 通过点连接符指定state路径
 })
 
 export default createStore<IRootState>({
@@ -49,8 +57,12 @@ export default createStore<IRootState>({
     getters,
     modules: {
         app,
+        user,
         tagsView,
-        settings
+        settings,
+        menu,
+        role,
+        permission
     }
 })
 
